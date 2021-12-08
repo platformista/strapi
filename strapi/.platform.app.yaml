@@ -1,0 +1,53 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+#
+# See https://docs.platform.sh/configuration/app.html
+
+# The name of this app. Must be unique within a project.
+name: strapi4
+
+# The runtime the application uses. Strapi not yet suppported with NodeJS 14.
+type: nodejs:16
+
+size: XS
+resources:
+  base_memory: 64
+  memory_ratio: 128
+
+build:
+  flavor: none
+
+hooks:
+  build: |
+    npm install
+    npm run build
+
+variables:
+  env:
+    NODE_ENV: 'production' # Production start on all environments
+
+# The configuration of app when it is exposed to the web.
+web:
+  commands:
+    start: |
+      npm start
+
+# The size of the persistent disk of the application (in MB).
+disk: 1024
+
+# The 'mounts' describe writable, persistent filesystem mounts in the application.
+mounts:
+  # Strapi's cache directory.
+  "/.cache":
+    source: local
+    source_path: cache
+
+  # Mount .tmp file in the app folder for strapi
+  "/.tmp":
+    source: local
+    source_path: app
+
+  # Allow for media uploads at runtime.
+  "public/uploads":
+    source: local
+    source_path: uploads
