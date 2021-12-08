@@ -9,7 +9,6 @@
 Strapi is a Headless CMS framework written in Node.js.
 This template provides the most basic installation of Strapi, running on SQLite.
 
-
 ## Features
 
 - [Node.js](https://nodejs.org/en/) 16
@@ -30,6 +29,10 @@ Stapi allows you to build your own content types. This installation ships alread
 ## Developing content types
 
 To create your own content types, you can use the Content-Type Builder. This, however, can only be used in development mode. Since the behaviour of the builder is to generate new code that should be checked into your repository, we have decided not to enable development mode in this template, not even on the development branches. Instead, we advise you to run Strapi locally in development mode, generate the new content types, and then check the new code in, and push it up for deployment.
+
+## X-Small container
+
+This template will deploy Strapi in the smallest container available on Platform.sh if the plan used is anything above Development (i.e. at least a Small plan).
 
 ## Documentation
 
