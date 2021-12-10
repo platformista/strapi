@@ -1,3 +1,5 @@
+TEST 
+
 # Strapi template for Platform.sh
 
 <p align="center">
