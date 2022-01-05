@@ -50,7 +50,8 @@ if (config.isValidPlatform() && !config.inBuild()) {
   }
 }
 
-module.exports = {
+// strapi-api/config/database.js
+module.exports = ({ env }) => ({
   defaultConnection: 'default',
   connections: {
     default: {
@@ -59,4 +60,4 @@ module.exports = {
       options: options,
     }
   }
-};
+});
