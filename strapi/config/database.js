@@ -1,15 +1,3 @@
-const path = require('path');
-
-module.exports = ({ env }) => ({
-  connection: {
-    client: 'sqlite',
-    connection: {
-      filename: path.join(__dirname, '..', env('DATABASE_FILENAME', '.tmp/data.db')),
-    },
-    useNullAsDefault: true,
-  },
-});
-
 const config = require("platformsh-config").config();
 
 let dbRelationship = "pg";
@@ -17,7 +5,7 @@ let dbRelationship = "pg";
 // Strapi default sqlite settings.
 let settings =  {
   client: 'sqlite',
-  filename: path.join(__dirname, '..', env('DATABASE_FILENAME', '.tmp/data.db')),
+  filename: process.env.DATABASE_FILENAME || '.tmp/data.db',
 };
 
 let options = {
