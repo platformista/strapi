@@ -60,6 +60,4 @@ if (config.isValidPlatform() && !config.inBuild()) {
 console.log(connection);
 
 // strapi-api/config/database.js
-module.exports = ({ env }) => ({
-  connection
-});
+module.exports = ({ env }) => ( connection );
