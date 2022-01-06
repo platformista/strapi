@@ -35,6 +35,9 @@ web:
 # The size of the persistent disk of the application (in MB).
 disk: 1024
 
+relationships:
+  pg: "postgres:postgresql"
+
 # The 'mounts' describe writable, persistent filesystem mounts in the application.
 mounts:
   # Strapi's cache directory.
