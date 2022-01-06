@@ -13,7 +13,6 @@
     "@strapi/plugin-i18n": "4.0.0",
     "@strapi/plugin-users-permissions": "4.0.0",
     "@strapi/strapi": "4.0.0",
-    "pg": "^8.7.1",
     "platformsh-config": "^2.4.1",
     "sqlite3": "5.0.2"
   },
