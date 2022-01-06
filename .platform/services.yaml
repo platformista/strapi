@@ -1,4 +1,4 @@
 postgres:
   type: postgresql:13
   disk: 256
-  size: XS
+  size: S
