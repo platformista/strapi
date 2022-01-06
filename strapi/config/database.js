@@ -1,45 +1,52 @@
 const config = require("platformsh-config").config();
+const path = require('path');
 
 let dbRelationship = "pg";
 
 // Strapi default sqlite settings.
-let settings =  {
-  client: 'sqlite',
-  filename: process.env.DATABASE_FILENAME || '.tmp/data.db',
+let connection = {
+  connection: {
+    client: 'sqlite',
+    connection: {
+      filename: path.join(__dirname, '..', process.env.DATABASE_FILENAME || '.tmp/data.db'),
+    },
+    useNullAsDefault: true,
+  },
 };
 
-let options = {
-  useNullAsDefault: true,
-};
+let pool = {};
 
 if (config.isValidPlatform() && !config.inBuild()) {
   // Platform.sh database configuration.
   const credentials = config.credentials(dbRelationship);
   console.log(`Using Platform.sh configuration with relationship ${dbRelationship}.`);
 
-  settings = {
-    client: "postgres",
-    host: credentials.ip,
-    port: credentials.port,
-    database: credentials.path,
-    username: credentials.username,
-    password: credentials.password
+  pool = {
+    min: 0,
+    max: 10,
+    acquireTimeoutMillis: 600000,
+    createTimeoutMillis: 30000,
+    idleTimeoutMillis: 20000,
+    reapIntervalMillis: 20000,
+    createRetryIntervalMillis: 200,
   };
 
-  options = {
-    ssl: false,
-    debug: false,
-    acquireConnectionTimeout: 100000,
-    pool: {
-      min: 0,
-      max: 10,
-      createTimeoutMillis: 30000,
-      acquireTimeoutMillis: 600000,
-      idleTimeoutMillis: 20000,
-      reapIntervalMillis: 20000,
-      createRetryIntervalMillis: 200
-    }
+  connection = {
+    connection: {
+      client: "postgres",
+      connection: {
+        host: credentials.ip,
+        port: credentials.port,
+        database: credentials.path,
+        user: credentials.username,
+        password: credentials.password,
+        ssl: false
+      },
+      debug: false,
+      pool
+    },
   };
+
 } else {
   if (config.isValidPlatform()) {
     // Build hook configuration message.
@@ -52,12 +59,5 @@ if (config.isValidPlatform() && !config.inBuild()) {
 
 // strapi-api/config/database.js
 module.exports = ({ env }) => ({
-  defaultConnection: 'default',
-  connections: {
-    default: {
-      connector: 'bookshelf',
-      settings: settings,
-      options: options,
-    }
-  }
+  connection
 });
