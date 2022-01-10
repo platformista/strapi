@@ -33,7 +33,7 @@ web:
       npm start
 
 # The size of the persistent disk of the application (in MB).
-disk: 1024
+disk: 256
 
 relationships:
   pg: "postgres:postgresql"
