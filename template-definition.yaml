@@ -19,7 +19,7 @@ info:
   # Unique machine name, prefaced by a vendor or organization identifier.
   # The vendor should be the lowercase name of your company, organization, or project, and the project name
   # the lowercase name of the template. This may be the same as the vendor in a single-product case.
-  id: vincenzo/strapi-v4-platformsh
+  id: platformista/strapi-v4-platformsh
   # The human-readable name of the template.  This is how the template will be named in the user interface.
   name: Strapi
   # Human-readable descriptive text for the template. Supports limited HTML.
