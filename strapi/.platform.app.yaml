@@ -7,7 +7,7 @@
 name: strapi4
 
 # The runtime the application uses. Strapi not yet suppported with NodeJS 14.
-type: nodejs:16
+type: nodejs:18
 
 size: XS
 resources:
