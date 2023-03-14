@@ -7,7 +7,6 @@
 </p>
 
 Strapi is a Headless CMS framework written in Node.js.
-This template provides the most basic installation of Strapi, running on PostgreSQL.
 
 ## Features
 
